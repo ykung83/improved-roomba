@@ -1960,13 +1960,12 @@ if mode == 4:  # make the cleaning sequence and export as csv file
 
     plot_color(myFile)
     np.savetxt('/Users/Games/Documents/SpaceMaps/data_room_2_pathing.csv', myFile, delimiter=',')
+    # Do not run this segment twice, make a new blank txt doc and change the name
     with open('/Users/Games/Documents/SpaceMaps/data_room_2_sequence.txt', 'w') as filehandle:
         for element in clean_seq:
             filehandle.write('%s\n' % element)
 
 if mode == 5:
-    myFile = np.genfromtxt('/Users/Games/Documents/SpaceMaps/data_test_area_smoothed.csv', delimiter=',')
-
     HOST = '192.168.4.1'
     PORT = 80
 
