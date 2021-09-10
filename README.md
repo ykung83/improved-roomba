@@ -20,7 +20,9 @@ cost $1.75, 4 SPDT relays which cost about $10 total. The most expensive part wa
 about an extra $39, minus the cost of all the sensors and circuitry I ripped out of the original. The battery was also unuseable 
 so I replaced it with several lower voltage batteries to get the same voltage and current output of the original. This was an additonal 
 expense since the batteries combined cost me about $20 but one that I do not think should count toward the total expense of the new roomba
-since I would have used the original battery had it not been broken. 
+since I would have used the original battery had it not been broken. A picture of the modified roomba is included, named 
+'modified_roomba_batteries_disconnected'. The circuit diagram detailing the electrical connections between each component is also included, 
+named 'Circuit diagram'. 
 
 The plan is to get the roomba to explore the room and send the exploration data back to the computer. 
 The computer can then generate a space map that determines where the roomba has gone and where it can go. 
@@ -61,7 +63,9 @@ Code details:
     The roomba will remain a certain distance away from the right wall and navigate the perimeter of the room in a counterclockwise fashion. 
     Once the outer perimeter is defined, it will make its way inward until either it is surrounded by areas that it has already explored or 
     the new space that it finds is not enough to justify further exploration (both are parameters that can be changed). The space map is updated 
-    and saved after each movement. Each space in the spacemap corresponds with a 1cm x 1cm area in the room. 
+    and saved after each movement. Each space in the spacemap corresponds with a 1cm x 1cm area in the room. An example of the output of this 
+    segment of code is included, named 'data_room_example'. This will be used in mode 3. A visual representation of this data is also included, 
+    named 'data_room_example_visual'.
     
     Mode 1: Direct communication.
     The PC will allow the user to input movement commands to the roomba. This was used primarily to test out snippets of code. 
@@ -73,7 +77,8 @@ Code details:
     A fairly computationally heavy program to smooth and manifest the spacemap made from mode 0 into something that can be used for navigation.
     Removes extra 'walls' that are not connected to anything, trims existing walls without affecting the interior area to reduce the size of the
     spacemap, finds all cleanable areas. For the new spacemap, spaces are labeled 0 if they are outside the cleanable area, 1 if they are a cleanble
-    space, and 3 if they are a wall. 
+    space, and 3 if they are a wall. The output for this segment of code is included, named 'data_room_smoothed_example'. This will be used in mode 4.
+    A visual representation of this data is also included, named 'data_room_smoothed_visual'.
     
     Mode 4: Compute a path for cleaning.
     A very computationally heavy program to find a path for the roomba to take to clean the cleanable area. Follows a similar scheme as mode 1. 
@@ -81,7 +86,9 @@ Code details:
     it will call a searching progrom which parses through the entire spacemap looking for a 1. If one is found, a pathing program will be called to 
     direct the roomba to the uncleaned space where normal operations will continue. This will loop until the searching program parses through the 
     entire spacemap. At this point, all reasonable spaces will be cleaned. The cumulative path will be recorded and the spacemap which shows the
-    path generated will be shown. Each new instruction is a slightly different color than the last to show progression of movement. 
+    path generated will be shown. Each new instruction is a slightly different color than the last to show progression of movement. The output for 
+    this segment of code is included, named 'data_room_sequence_example'. This is used in mode 5. A visual representation of this data in also 
+    included, named 'data_room_pathing_visual'. 
     
     Mode 5: Execute the list of instructions. 
     First, the roomba must make it to the starting corner, so a series of pre-made code snippets are executed to ensure that the roomba starts where 
